@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: "StdBold";
+  src: local("StdBold"), url(./assets//fonts/StdBold.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "StdBlack";
+  src: local("StdBlack"), url(./assets//fonts/StdBlack.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "StdMedium";
+  src: local("StdMedium"), url(./assets//fonts/StdMedium.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "StdRegular";
+  src: local("StdRegular"),
+    url(./assets//fonts/StdRegular.otf) format("truetype");
+}
