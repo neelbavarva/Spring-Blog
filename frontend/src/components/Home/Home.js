@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Home.css';
+import AllPosts from '../AllPosts/AllPosts';
 
 export default function Home() {
 
@@ -11,8 +12,30 @@ export default function Home() {
             <div class="video-bg">
                 <img src="https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/02/Usign-Gradients-Featured-Image.jpg" />
             </div>
+
+            <div class={`pop-up ${popup}`}>
+                <div class="pop-up__title">
+                    Add a New Post
+                    <div onClick={() => setPopup(null)} >
+                        <svg class="close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M15 9l-6 6M9 9l6 6" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="pop-up__subtitle">Adjust your selections for advanced options as desired before continuing. <a href="#">Learn more</a></div>
+                <div class="checkbox-wrapper">
+                    <input className="add_post_input" placeholder="Title" />
+                </div>
+                <div class="checkbox-wrapper">
+                    <textarea className="add_post_input content_input" placeholder="Content" />
+                </div>
+                <div class="content-button-wrapper">
+                    <button class="content-button status-button" onClick={() => setPopup(null)}>Submit</button>
+                </div>
+            </div>
             
-            <div class="app">
+            <div class={`app ${popup !=null ? "less_opacity" : null}`}>
                 <div class="header">
                     <div class="menu-circle"></div>
                         <div class="header-profile">
@@ -20,6 +43,22 @@ export default function Home() {
                                 class="profile-img"
                                 src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg"
                             />
+                            <div className="mobile-dropdown">
+                                <div class="content-section">
+                                    <div class="app-cad-buttons">
+                                        <button class={`dropdown ${dropdown}`} onClick={() => dropdown == null ? setDropdown("is-active") : setDropdown(null)}>
+                                                <ul>
+                                                    <li><a href="#">All Posts</a></li>
+                                                    <li><a href="#">Profile</a></li>
+                                                    <li><a href="#">Your Posts</a></li>
+                                                    <li onClick={() => setPopup("visible")} ><a >Add Post</a></li>
+                                                    <li><a href="#">GitHub</a></li>
+                                                    <li><a href="#">Portfolio</a></li>
+                                                </ul>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 <div class="wrapper">
@@ -88,7 +127,7 @@ export default function Home() {
                                 </svg>
                                 Your Posts
                             </a>
-                            <a href="#">
+                            <a onClick={() => setPopup("visible")}>
                                 <svg viewBox="0 0 58 58" fill="currentColor">
                                     <path
                                     d="M57 6H1a1 1 0 00-1 1v44a1 1 0 001 1h56a1 1 0 001-1V7a1 1 0 00-1-1zM10 50H2v-9h8v9zm0-11H2v-9h8v9zm0-11H2v-9h8v9zm0-11H2V8h8v9zm26.537 12.844l-11 7a1.007 1.007 0 01-1.018.033A1.001 1.001 0 0124 36V22a1.001 1.001 0 011.538-.844l11 7a1.003 1.003 0 01-.001 1.688zM56 50h-8v-9h8v9zm0-11h-8v-9h8v9zm0-11h-8v-9h8v9zm0-11h-8V8h8v9z"
@@ -181,187 +220,10 @@ export default function Home() {
                         </div>
                     </div>
 
+                    <AllPosts />
                     
-                    <div class="main-container">
-                        <div class="main-header">
-                        <a class="menu-link-main" href="#">All Apps</a>
-                        </div>
-                        <div class="content-wrapper">
-                        <div class="content-wrapper-header">
-                            <div class="content-wrapper-context">
-                                <h3 class="img-content">
-                                    <img
-                                    class="header_image"
-                                    src="https://cdn3d.iconscout.com/3d/premium/thumb/code-4059153-3364039@0.png"
-                                    />
-                                    Blog App
-                                </h3>
-                                <div class="content-text">
-                                    This Blog App project is made using React.js for Frontend and
-                                    Spring Boot for Backend.
-                                </div>
-                                <a href="https://github.com/neelbavarva/Spring-Blog" target="_blank"><button class="content-button">View Repository</button></a>
-                            </div>
-                            <img
-                                class="content-wrapper-img"
-                                src="https://assets.codepen.io/3364143/glass.png"
-                                alt=""
-                                />
-                        </div>
-
-                        <div class={`pop-up ${popup}`}>
-                            <div class="pop-up__title">
-                                Update This App
-                                <div onClick={() => setPopup(null)} >
-                                    <svg class="close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
-                                        <circle cx="12" cy="12" r="10" />
-                                        <path d="M15 9l-6 6M9 9l6 6" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="pop-up__subtitle">Adjust your selections for advanced options as desired before continuing. <a href="#">Learn more</a></div>
-                                <div class="checkbox-wrapper">
-                                    <input type="checkbox" id="check1" class="checkbox" />
-                                    <label for="check1">Import previous settings and preferences</label>
-                                </div>
-                                <div class="checkbox-wrapper">
-                                    <input type="checkbox" id="check2" class="checkbox" />
-                                    <label for="check2">Remove old versions</label>
-                                </div>
-                            <div class="content-button-wrapper">
-                                <button class="content-button status-button open close" onClick={() => setPopup(null)} >Cancel</button>
-                                <button class="content-button status-button" onClick={() => setPopup(null)} >Continue</button>
-                            </div>
-                        </div>
-                        
-                        <div class="content-section">
-                            <div class="content-section-title">All Posts</div>
-                                <div class="apps-card">
-                                    <div class="app-card">
-                                        <span>
-                                            <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                            @neelbavarva
-                                        </span>
-                                        <div class="app-card__subtext">
-                                            Industry Standart motion graphics & visual effects
-                                        </div>
-                                        <div class="app-card-buttons">
-                                            <button class="content-button status-button" onClick={() => setPopup("visible")}>Edit</button>
-                                            <div class="menu">
-                                                <button class={`dropdown ${dropdown}`} onClick={() => dropdown == null ? setDropdown("is-active") : setDropdown(null)}>
-                                                    <ul>
-                                                        <li><a href="#">Go to Discover</a></li>
-                                                        <li><a href="#">Learn more</a></li>
-                                                        <li><a href="#">Uninstall</a></li>
-                                                    </ul>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="app-card">
-                                        <span>
-                                            <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                            After Effects
-                                        </span>
-                                        <div class="app-card__subtext">
-                                            Industry Standart motion graphics & visual effects
-                                        </div>
-                                        <div class="app-card-buttons">
-                                            <button class="content-button status-button">Update</button>
-                                            <div class="menu"></div>
-                                        </div>
-                                    </div>
-                                    <div class="app-card">
-                                        <span>
-                                            <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                            After Effects
-                                        </span>
-                                        <div class="app-card__subtext">
-                                            Industry Standart motion graphics & visual effects
-                                        </div>
-                                        <div class="app-card-buttons">
-                                            <button class="content-button status-button">Update</button>
-                                            <div class="menu"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="app-card">
-                                        <span>
-                                            <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                            @neelbavarva
-                                        </span>
-                                        <div class="app-card__subtext">
-                                            Industry Standart motion graphics & visual effects
-                                        </div>
-                                        <div class="app-card-buttons">
-                                            <button class="content-button status-button">Update</button>
-                                            <div class="menu"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="app-card">
-                                        <span>
-                                            <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                            @neelbavarva
-                                        </span>
-                                        <div class="app-card__subtext">
-                                            Industry Standart motion graphics & visual effects
-                                        </div>
-                                        <div class="app-card-buttons">
-                                            <button class="content-button status-button">Update</button>
-                                            <div class="menu"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="app-card">
-                                        <span>
-                                            <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                            @neelbavarva
-                                        </span>
-                                        <div class="app-card__subtext">
-                                            Industry Standart motion graphics & visual effects
-                                        </div>
-                                        <div class="app-card-buttons">
-                                            <button class="content-button status-button">Update</button>
-                                            <div class="menu"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="app-card">
-                                        <span>
-                                            <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                            @neelbavarva
-                                        </span>
-                                        <div class="app-card__subtext">
-                                            Industry Standart motion graphics & visual effects
-                                        </div>
-                                        <div class="app-card-buttons">
-                                            <button class="content-button status-button">Update</button>
-                                            <div class="menu"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="app-card">
-                                        <span>
-                                            <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                            @neelbavarva
-                                        </span>
-                                        <div class="app-card__subtext">
-                                            Industry Standart motion graphics & visual effects
-                                        </div>
-                                        <div class="app-card-buttons">
-                                            <button class="content-button status-button">Update</button>
-                                            <div class="menu"></div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="overlay-app"></div>
             </div>
-            </div>
+        </div>
     );
 }
