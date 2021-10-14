@@ -1,6 +1,11 @@
+import React, {useState, useEffect} from 'react';
 import './Home.css';
 
 export default function Home() {
+
+    const [popup, setPopup] = useState(null);
+    const [dropdown, setDropdown] = useState(null);
+
     return (
         <div>
             <div class="video-bg">
@@ -175,6 +180,8 @@ export default function Home() {
                         </div>
                         </div>
                     </div>
+
+                    
                     <div class="main-container">
                         <div class="main-header">
                         <a class="menu-link-main" href="#">All Apps</a>
@@ -202,6 +209,31 @@ export default function Home() {
                                 />
                         </div>
 
+                        <div class={`pop-up ${popup}`}>
+                            <div class="pop-up__title">
+                                Update This App
+                                <div onClick={() => setPopup(null)} >
+                                    <svg class="close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M15 9l-6 6M9 9l6 6" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="pop-up__subtitle">Adjust your selections for advanced options as desired before continuing. <a href="#">Learn more</a></div>
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" id="check1" class="checkbox" />
+                                    <label for="check1">Import previous settings and preferences</label>
+                                </div>
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" id="check2" class="checkbox" />
+                                    <label for="check2">Remove old versions</label>
+                                </div>
+                            <div class="content-button-wrapper">
+                                <button class="content-button status-button open close" onClick={() => setPopup(null)} >Cancel</button>
+                                <button class="content-button status-button" onClick={() => setPopup(null)} >Continue</button>
+                            </div>
+                        </div>
+                        
                         <div class="content-section">
                             <div class="content-section-title">All Posts</div>
                                 <div class="apps-card">
@@ -214,8 +246,16 @@ export default function Home() {
                                             Industry Standart motion graphics & visual effects
                                         </div>
                                         <div class="app-card-buttons">
-                                            <button class="content-button status-button">Update</button>
-                                            <div class="menu"></div>
+                                            <button class="content-button status-button" onClick={() => setPopup("visible")}>Edit</button>
+                                            <div class="menu">
+                                                <button class={`dropdown ${dropdown}`} onClick={() => dropdown == null ? setDropdown("is-active") : setDropdown(null)}>
+                                                    <ul>
+                                                        <li><a href="#">Go to Discover</a></li>
+                                                        <li><a href="#">Learn more</a></li>
+                                                        <li><a href="#">Uninstall</a></li>
+                                                    </ul>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="app-card">
