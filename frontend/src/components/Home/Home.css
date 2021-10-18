@@ -182,11 +182,6 @@ body.light-mode .video-bg:before {
   margin-right: 195px;
   flex-shrink: 0;
 }
-@media screen and (max-width: 945px) {
-  .menu-circle {
-    display: none;
-  }
-}
 
 .header-profile {
   display: flex;
@@ -219,11 +214,6 @@ body.light-mode .video-bg:before {
 }
 .notification + svg {
   margin-left: 22px;
-}
-@media screen and (max-width: 945px) {
-  .notification + svg {
-    display: none;
-  }
 }
 
 .header_image {
@@ -282,7 +272,7 @@ body.light-mode .video-bg:before {
     display: none;
   }
 
-  .profile-img {
+  .header-profile-img {
     display: none;
   }
 }
@@ -308,6 +298,7 @@ body.light-mode .video-bg:before {
   font-size: 14px;
   border-radius: 6px;
   transition: 0.3s;
+  cursor: pointer;
 }
 .side-menu a:hover {
   background-color: var(--hover-menu-bg);
@@ -509,9 +500,9 @@ body.light-mode .video-bg:before {
   background-color: #3bf083;
 }
 .status-button {
-  font-size: 15px;
+  font-size: 14px;
   margin-top: 0;
-  padding: 6px 24px;
+  padding: 8px 24px;
 }
 @media screen and (max-width: 390px) {
   .status-button {
@@ -627,6 +618,11 @@ body.light-mode .video-bg:before {
   justify-content: space-between;
   align-items: center;
 }
+
+.pop-up__title > div {
+  cursor: pointer;
+}
+
 .pop-up__subtitle {
   white-space: normal;
   margin: 20px 0;
@@ -651,8 +647,13 @@ body.light-mode .video-bg:before {
   font-weight: 400;
 }
 .checkbox-wrapper + .checkbox-wrapper {
-  margin: 20px 0 40px;
+  margin-top: 15px;
 }
+
+.content-button-wrapper {
+  padding-top: 40px;
+}
+
 .checkbox {
   display: none;
 }
@@ -808,7 +809,7 @@ body.light-mode .video-bg:before {
 
 @media screen and (max-width: 570px) {
   .pop-up {
-    width: 100%;
+    width: 95%;
   }
 }
 
@@ -907,7 +908,7 @@ body.light-mode .video-bg:before {
   position: absolute;
   background: var(--dropdown-bg);
   border-radius: 10px;
-  height: 220px;
+  height: 250px;
   width: 120px;
   right: 0;
   top: 20px;

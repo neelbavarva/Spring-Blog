@@ -44,12 +44,8 @@ export default function AllPosts() {
                                         <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
                                         @neelbavarva
                                     </span>
-                                    <div class="app-card__subtext">
+                                    <div class="app-card__subtext allpost_text">
                                         Industry Standart motion graphics & visual effects
-                                    </div>
-                                    <div class="app-card-buttons">
-                                        <button class="content-button status-button" onClick={() => setPopup("visible")}>Edit</button>
-                                        <div class="menu"></div>
                                     </div>
                                 </div>
                                 <div class="app-card">
@@ -57,12 +53,8 @@ export default function AllPosts() {
                                         <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
                                         After Effects
                                     </span>
-                                    <div class="app-card__subtext">
+                                    <div class="app-card__subtext allpost_text">
                                         Industry Standart motion graphics & visual effects
-                                    </div>
-                                    <div class="app-card-buttons">
-                                        <button class="content-button status-button">Update</button>
-                                        <div class="menu"></div>
                                     </div>
                                 </div>
                                 <div class="app-card">
@@ -70,12 +62,8 @@ export default function AllPosts() {
                                         <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
                                         After Effects
                                     </span>
-                                    <div class="app-card__subtext">
+                                    <div class="app-card__subtext allpost_text">
                                         Industry Standart motion graphics & visual effects
-                                    </div>
-                                    <div class="app-card-buttons">
-                                        <button class="content-button status-button">Update</button>
-                                        <div class="menu"></div>
                                     </div>
                                 </div>
 
@@ -84,12 +72,8 @@ export default function AllPosts() {
                                         <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
                                         @neelbavarva
                                     </span>
-                                    <div class="app-card__subtext">
+                                    <div class="app-card__subtext allpost_text">
                                         Industry Standart motion graphics & visual effects
-                                    </div>
-                                    <div class="app-card-buttons">
-                                        <button class="content-button status-button">Update</button>
-                                        <div class="menu"></div>
                                     </div>
                                 </div>
 
@@ -98,12 +82,8 @@ export default function AllPosts() {
                                         <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
                                         @neelbavarva
                                     </span>
-                                    <div class="app-card__subtext">
+                                    <div class="app-card__subtext allpost_text">
                                         Industry Standart motion graphics & visual effects
-                                    </div>
-                                    <div class="app-card-buttons">
-                                        <button class="content-button status-button">Update</button>
-                                        <div class="menu"></div>
                                     </div>
                                 </div>
 
@@ -112,12 +92,8 @@ export default function AllPosts() {
                                         <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
                                         @neelbavarva
                                     </span>
-                                    <div class="app-card__subtext">
+                                    <div class="app-card__subtext allpost_text">
                                         Industry Standart motion graphics & visual effects
-                                    </div>
-                                    <div class="app-card-buttons">
-                                        <button class="content-button status-button">Update</button>
-                                        <div class="menu"></div>
                                     </div>
                                 </div>
 
@@ -126,12 +102,8 @@ export default function AllPosts() {
                                         <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
                                         @neelbavarva
                                     </span>
-                                    <div class="app-card__subtext">
+                                    <div class="app-card__subtext allpost_text">
                                         Industry Standart motion graphics & visual effects
-                                    </div>
-                                    <div class="app-card-buttons">
-                                        <button class="content-button status-button">Update</button>
-                                        <div class="menu"></div>
                                     </div>
                                 </div>
 
@@ -140,13 +112,8 @@ export default function AllPosts() {
                                         <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
                                         @neelbavarva
                                     </span>
-                                    <div class="app-card__subtext">
+                                    <div class="app-card__subtext allpost_text">
                                         Industry Standart motion graphics & visual effects
-                                    </div>
-                                    <div class="app-card-buttons">
-                                        <button class="content-button status-button">Update</button>
-                                        <div class="menu">
-                                        </div>
                                     </div>
                                 </div>
 

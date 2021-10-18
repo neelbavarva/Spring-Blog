@@ -1,11 +1,36 @@
 import React, {useState, useEffect} from 'react';
 import './Home.css';
 import AllPosts from '../AllPosts/AllPosts';
+import AddPost from '../AddPost/AddPost';
+import SignIn from '../SignIn/SignIn';
+import SignUp from '../SignUp/SignUp';
+import Profile from '../Profile/Profile';
 
 export default function Home() {
 
-    const [popup, setPopup] = useState(null);
+    const [viewMode, setViewMode] = useState("AllPosts");
+
+    const [addPost, setAddPost] = useState(null);
+    const [signin, setSignin] = useState(null);
+    const [signup, setSignup] = useState(null);
     const [dropdown, setDropdown] = useState(null);
+
+    const [popup, setPopup] = useState(null);
+
+    const adPostData = (isVisible) => {
+        setAddPost(isVisible);
+        setPopup(isVisible);
+    };
+
+    const signinData = (isVisible) => {
+        setSignin(isVisible);
+        setPopup(isVisible);
+    };
+
+    const signupData = (isVisible) => {
+        setSignup(isVisible);
+        setPopup(isVisible);
+    };
 
     return (
         <div>
@@ -13,34 +38,16 @@ export default function Home() {
                 <img src="https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/02/Usign-Gradients-Featured-Image.jpg" />
             </div>
 
-            <div class={`pop-up ${popup}`}>
-                <div class="pop-up__title">
-                    Add a New Post
-                    <div onClick={() => setPopup(null)} >
-                        <svg class="close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M15 9l-6 6M9 9l6 6" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="pop-up__subtitle">Adjust your selections for advanced options as desired before continuing. <a href="#">Learn more</a></div>
-                <div class="checkbox-wrapper">
-                    <input className="add_post_input" placeholder="Title" />
-                </div>
-                <div class="checkbox-wrapper">
-                    <textarea className="add_post_input content_input" placeholder="Content" />
-                </div>
-                <div class="content-button-wrapper">
-                    <button class="content-button status-button" onClick={() => setPopup(null)}>Submit</button>
-                </div>
-            </div>
+            {signin == null ? null : <SignIn sendDataToParent={signinData} />}
+            {signup == null ? null : <SignUp sendDataToParent={signupData} />}
+            {addPost == null ? null : <AddPost sendDataToParent={adPostData} />}
             
             <div class={`app ${popup !=null ? "less_opacity" : null}`}>
                 <div class="header">
                     <div class="menu-circle"></div>
                         <div class="header-profile">
                             <img
-                                class="profile-img"
+                                class="profile-img header-profile-img"
                                 src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg"
                             />
                             <div className="mobile-dropdown">
@@ -48,10 +55,11 @@ export default function Home() {
                                     <div class="app-cad-buttons">
                                         <button class={`dropdown ${dropdown}`} onClick={() => dropdown == null ? setDropdown("is-active") : setDropdown(null)}>
                                                 <ul>
-                                                    <li><a href="#">All Posts</a></li>
-                                                    <li><a href="#">Profile</a></li>
-                                                    <li><a href="#">Your Posts</a></li>
-                                                    <li onClick={() => setPopup("visible")} ><a >Add Post</a></li>
+                                                    <li onClick={() => setViewMode("AllPosts")}><a>All Posts</a></li>
+                                                    <li onClick={() => setViewMode("Profile")}><a>Profile</a></li>
+                                                    <li onClick={() => setSignin("visible") & setPopup("visible")}><a>SignIn</a></li>
+                                                    <li onClick={() => setSignup("visible") & setPopup("visible")}><a>SignUp</a></li>
+                                                    <li onClick={() => setAddPost("visible") & setPopup("visible")}><a>Add Post</a></li>
                                                     <li><a href="#">GitHub</a></li>
                                                     <li><a href="#">Portfolio</a></li>
                                                 </ul>
@@ -66,7 +74,7 @@ export default function Home() {
                         <div class="side-wrapper">
                         <div class="side-title">Apps</div>
                         <div class="side-menu">
-                            <a href="#">
+                            <a onClick={() => setViewMode("AllPosts")}>
                                 <svg viewBox="0 0 512 512">
                                     <g xmlns="http://www.w3.org/2000/svg" fill="currentColor">
                                     <path
@@ -102,7 +110,7 @@ export default function Home() {
                         <div class="side-wrapper">
                         <div class="side-title">Categories</div>
                         <div class="side-menu">
-                            <a href="#">
+                            <a onClick={() => setViewMode("Profile")}>
                                 <svg viewBox="0 0 488.455 488.455" fill="currentColor">
                                     <path
                                     d="M287.396 216.317c23.845 23.845 23.845 62.505 0 86.35s-62.505 23.845-86.35 0-23.845-62.505 0-86.35 62.505-23.845 86.35 0"
@@ -113,7 +121,18 @@ export default function Home() {
                                 </svg>
                                 Profile
                             </a>
-                            <a href="#">
+                            <a onClick={() => setSignin("visible") & setPopup("visible")}>
+                                <svg viewBox="0 0 488.455 488.455" fill="currentColor">
+                                    <path
+                                    d="M287.396 216.317c23.845 23.845 23.845 62.505 0 86.35s-62.505 23.845-86.35 0-23.845-62.505 0-86.35 62.505-23.845 86.35 0"
+                                    />
+                                    <path
+                                    d="M427.397 91.581H385.21l-30.544-61.059H133.76l-30.515 61.089-42.127.075C27.533 91.746.193 119.115.164 152.715L0 396.86c0 33.675 27.384 61.074 61.059 61.074h366.338c33.675 0 61.059-27.384 61.059-61.059V152.639c-.001-33.674-27.385-61.058-61.059-61.058zM244.22 381.61c-67.335 0-122.118-54.783-122.118-122.118s54.783-122.118 122.118-122.118 122.118 54.783 122.118 122.118S311.555 381.61 244.22 381.61z"
+                                    />
+                                </svg>
+                                SignIn
+                            </a>
+                            <a onClick={() => setSignup("visible") & setPopup("visible")}>
                                 <svg viewBox="0 0 512 512" fill="currentColor">
                                     <circle
                                     cx="295.099"
@@ -125,9 +144,9 @@ export default function Home() {
                                     d="M471.854 338.281V163.146H296.72v41.169a123.1 123.1 0 01121.339 122.939c0 3.717-.176 7.393-.5 11.027zM172.14 327.254a123.16 123.16 0 01100.59-120.915L195.082 73.786 40.146 338.281H172.64c-.325-3.634-.5-7.31-.5-11.027z"
                                     />
                                 </svg>
-                                Your Posts
+                                SignUp
                             </a>
-                            <a onClick={() => setPopup("visible")}>
+                            <a onClick={() => setAddPost("visible") & setPopup("visible")}>
                                 <svg viewBox="0 0 58 58" fill="currentColor">
                                     <path
                                     d="M57 6H1a1 1 0 00-1 1v44a1 1 0 001 1h56a1 1 0 001-1V7a1 1 0 00-1-1zM10 50H2v-9h8v9zm0-11H2v-9h8v9zm0-11H2v-9h8v9zm0-11H2V8h8v9zm26.537 12.844l-11 7a1.007 1.007 0 01-1.018.033A1.001 1.001 0 0124 36V22a1.001 1.001 0 011.538-.844l11 7a1.003 1.003 0 01-.001 1.688zM56 50h-8v-9h8v9zm0-11h-8v-9h8v9zm0-11h-8v-9h8v9zm0-11h-8V8h8v9z"
@@ -220,8 +239,9 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <AllPosts />
-                    
+                    {viewMode == "AllPosts" && <AllPosts />}
+                    {viewMode == "Profile" && <Profile />}
+
                 </div>
             </div>
         </div>
