@@ -4,8 +4,8 @@
 
 ## Completed APIs
 
-☑️ Login <br/>
-☑️ Signup <br/>
+- [x] Login
+- [x] Signup 
 
 ## All APIs
 
