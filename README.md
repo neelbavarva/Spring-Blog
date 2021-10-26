@@ -9,5 +9,8 @@
 
 ## All APIs
 
-- [ ] AddPost
+- [ ] Add Post
+- [ ] View Post
+- [ ] Update Post
+- [ ] Delete Post
 
