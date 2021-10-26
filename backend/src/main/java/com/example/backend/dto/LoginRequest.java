@@ -1,13 +1,8 @@
-package com.example.backend.model;
+package com.example.backend.dto;
 
-
-public class JwtRequest {
+public class LoginRequest {
     private String username;
     private String password;
-
-    public JwtRequest(){
-
-    }
 
     public String getUsername() {
         return username;
@@ -23,13 +18,5 @@ public class JwtRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "JwtRequest{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

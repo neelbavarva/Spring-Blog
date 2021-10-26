@@ -1,11 +1,11 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.LoginRequest;
+import com.example.backend.dto.LoginResponse;
 import com.example.backend.helper.JwtUtil;
-import com.example.backend.model.JwtRequest;
-import com.example.backend.model.JwtResponse;
-import com.example.backend.model.User;
+import com.example.backend.model.MyUser;
+import com.example.backend.service.AuthService;
 import com.example.backend.service.CustomUserDetailsService;
-import com.example.backend.service.UserService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @Autowired
-    private UserService userService;
+    private AuthService authService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -32,34 +35,32 @@ public class AuthController {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
-    @Autowired
-    private JwtUtil jwtUtil;
-
     @PostMapping("/signup")
-    public void signup(@RequestBody User user){
-        userService.addNewUser(user);
+    public void addUser(@RequestBody MyUser myUser){
+        authService.addUser(myUser);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody JwtRequest jwtRequest) throws Exception {
-
-        System.out.println(jwtRequest);
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws Exception {
+        System.out.println(loginRequest);
 
         try{
-            this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
+            this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         } catch (UsernameNotFoundException e){
             e.printStackTrace();
-            throw new Exception("Bad Credentials !");
+            throw  new Exception("Bad Credentials !");
         } catch (BadCredentialsException e){
-            throw new Exception("Bad Credentials !");
+            throw  new Exception("Bad Credentials !");
+        } catch (ExpiredJwtException e) {
+            System.out.println("Token expired");
         }
 
-        System.out.println("YOO");
-        UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
-        System.out.println("YOO");
-        String token = this.jwtUtil.generateToken(userDetails);
-        System.out.println("Jwt Token: " + token);
+        UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(loginRequest.getUsername());
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        String token = this.jwtUtil.generateToken(userDetails);
+        System.out.println("JWT " + token);
+
+        return ResponseEntity.ok(new LoginResponse(token, 200));
     }
+
 }
