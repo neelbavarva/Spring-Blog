@@ -2,8 +2,12 @@
 
 *For Developmental Tracking* 
 
-## APIs
+## Completed APIs
 
 ☑️ Login <br/>
 ☑️ Signup <br/>
+
+## All APIs
+
+- [ ] AddPost
 
