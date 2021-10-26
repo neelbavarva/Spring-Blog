@@ -49,6 +49,7 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
+  background-color: #000;
 }
 .video-bg img {
   width: 100%;
@@ -352,6 +353,7 @@ body.light-mode .video-bg:before {
   height: 100%;
   overflow: auto;
   background-color: var(--theme-bg-color);
+  min-width: 40rem;
 }
 @media screen and (max-width: 510px) {
   .content-wrapper {
@@ -697,6 +699,7 @@ body.light-mode .video-bg:before {
   display: flex;
   flex-direction: column;
   width: calc(33.3% - 20px);
+  min-width: 10rem;
   font-size: 16px;
   background-color: var(--content-bg);
   border-radius: 14px;
@@ -765,8 +768,11 @@ body.light-mode .video-bg:before {
 }
 
 .card_icon {
+  width: 26px;
+  height: 26px;
   margin-left: 0rem;
   margin-right: 0.75rem;
+  border: 2px solid white;
 }
 
 .pop-up {

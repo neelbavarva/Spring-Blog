@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './AddPost.css';
+import * as SERVER from '../../ServerURL';
 
 export default function AddPost({sendDataToParent}) {
 

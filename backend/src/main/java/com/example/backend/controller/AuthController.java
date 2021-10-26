@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.dto.LoginRequest;
 import com.example.backend.dto.LoginResponse;
+import com.example.backend.dto.RegisterResponse;
 import com.example.backend.helper.JwtUtil;
 import com.example.backend.model.MyUser;
 import com.example.backend.service.AuthService;
@@ -14,11 +15,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -36,8 +35,9 @@ public class AuthController {
     private CustomUserDetailsService customUserDetailsService;
 
     @PostMapping("/signup")
-    public void addUser(@RequestBody MyUser myUser){
+    public RegisterResponse addUser(@RequestBody MyUser myUser){
         authService.addUser(myUser);
+        return new RegisterResponse(200, "Registered Successfully");
     }
 
     @PostMapping("/login")

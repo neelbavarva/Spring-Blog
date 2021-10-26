@@ -1,10 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import './AllPosts.css';
+import * as SERVER from '../../ServerURL';
 
 export default function AllPosts() {
 
     const [popup, setPopup] = useState(null);
     const [dropdown, setDropdown] = useState(null);
+
+    const [allPosts, setAllPosts] = useState(null);
+
+    const fetchPosts = () => {
+        fetch(`${SERVER.LINK}/api/post/view/all`)
+        .then(res => res.json())
+        .then(value => setAllPosts(value))
+    }
+
+
+    useEffect(()=>{
+        fetchPosts()
+    },[])
 
     return (
             <div class="main-container">
@@ -39,84 +53,31 @@ export default function AllPosts() {
                     <div class="content-section">
                         <div class="content-section-title">All Posts</div>
                             <div class="apps-card">
-                                <div class="app-card">
-                                    <span>
-                                        <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                        @neelbavarva
-                                    </span>
-                                    <div class="app-card__subtext allpost_text">
-                                        Industry Standart motion graphics & visual effects
-                                    </div>
-                                </div>
-                                <div class="app-card">
-                                    <span>
-                                        <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                        After Effects
-                                    </span>
-                                    <div class="app-card__subtext allpost_text">
-                                        Industry Standart motion graphics & visual effects
-                                    </div>
-                                </div>
-                                <div class="app-card">
-                                    <span>
-                                        <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                        After Effects
-                                    </span>
-                                    <div class="app-card__subtext allpost_text">
-                                        Industry Standart motion graphics & visual effects
-                                    </div>
-                                </div>
 
-                                <div class="app-card">
-                                    <span>
-                                        <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                        @neelbavarva
-                                    </span>
-                                    <div class="app-card__subtext allpost_text">
-                                        Industry Standart motion graphics & visual effects
-                                    </div>
-                                </div>
+                                {allPosts == null ? <h1>Loading...</h1> : (
+                                    <div class="apps-card">
+                                        {allPosts.map(item =>{
+                                            return(
+                                                <div class="app-card">
+                                                    <span>
+                                                        <img class="profile-img card_icon post_item_title" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
+                                                        
+                                                        <div className="post_item_title">
+                                                            {item.title}
+                                                        </div>
 
-                                <div class="app-card">
-                                    <span>
-                                        <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                        @neelbavarva
-                                    </span>
-                                    <div class="app-card__subtext allpost_text">
-                                        Industry Standart motion graphics & visual effects
+                                                    </span>
+                                                    <div class="app-card__subtext allpost_text">
+                                                        <div className="post_item_content">
+                                                            {item.content}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })}
                                     </div>
-                                </div>
-
-                                <div class="app-card">
-                                    <span>
-                                        <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                        @neelbavarva
-                                    </span>
-                                    <div class="app-card__subtext allpost_text">
-                                        Industry Standart motion graphics & visual effects
-                                    </div>
-                                </div>
-
-                                <div class="app-card">
-                                    <span>
-                                        <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                        @neelbavarva
-                                    </span>
-                                    <div class="app-card__subtext allpost_text">
-                                        Industry Standart motion graphics & visual effects
-                                    </div>
-                                </div>
-
-                                <div class="app-card">
-                                    <span>
-                                        <img class="profile-img card_icon" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                        @neelbavarva
-                                    </span>
-                                    <div class="app-card__subtext allpost_text">
-                                        Industry Standart motion graphics & visual effects
-                                    </div>
-                                </div>
-
+                                )}
+                                
                             </div>
                         </div>
                     </div>

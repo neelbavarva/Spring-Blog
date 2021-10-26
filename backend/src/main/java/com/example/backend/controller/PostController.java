@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/post")
 public class PostController {
@@ -48,6 +49,6 @@ public class PostController {
         return postService.viewUserPost(username);
     }
 
-    
+
 
 }

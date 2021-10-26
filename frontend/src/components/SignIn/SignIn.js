@@ -1,7 +1,45 @@
 import React, {useState, useEffect} from 'react';
 import './SignIn.css';
+import * as SERVER from '../../ServerURL';
 
 export default function SignIn({sendDataToParent}) {
+
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
+
+    const [loginProcess, setLoginProcess] = useState("null");
+
+    function fetchSignIn(){
+
+        setLoginProcess("loading")
+
+        if(username!=null && password!=null){
+            fetch(`${SERVER.LINK}/api/auth/login`,{
+                method:'POST',
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(res => res.json())
+            .then(value => {
+                console.log(value)
+                if(value.status == 200){
+                    localStorage.setItem('SpringBlog_Token', value.token);
+                    localStorage.setItem('SpringBlog_Username', username);
+                    setLoginProcess("done")
+                } else {
+                    
+                }
+            })
+        } else {
+            console.log(username);
+        }
+        
+    }
 
     return (
             <div>
@@ -15,15 +53,24 @@ export default function SignIn({sendDataToParent}) {
                             </svg>
                         </div>
                     </div>
-                    <div class="pop-up__subtitle">Adjust your selections for advanced options as desired before continuing. <a href="#">Learn more</a></div>
-                    <div class="checkbox-wrapper">
-                        <input className="add_post_input" placeholder="Username" />
+                    <div class="pop-up__subtitle">
+                        {loginProcess == "done" ? <>LoggedIn</> : <>Fill the form</>}
                     </div>
                     <div class="checkbox-wrapper">
-                        <input className="add_post_input" placeholder="Password" />
+                        <input className="add_post_input" onChange={e => setUsername(e.target.value)} placeholder="Username" />
+                    </div>
+                    <div class="checkbox-wrapper">
+                        <input className="add_post_input" onChange={e => setPassword(e.target.value)} placeholder="Password" />
                     </div>
                     <div class="content-button-wrapper">
-                        <button class="content-button status-button" onClick={() => sendDataToParent(null)}>SignIn</button>
+                        {loginProcess == "done" ? 
+                            <button class="content-button status-button">
+                                Successfully LoggedIn
+                            </button> : 
+                            <button class="content-button status-button" onClick={() => fetchSignIn()}>
+                                {loginProcess == "null" ? <>Login</> : <>•••</>}
+                            </button>
+                        }
                     </div>
                 </div>
             </div>
