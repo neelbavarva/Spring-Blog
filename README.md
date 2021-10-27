@@ -7,15 +7,14 @@
 - [x] Login
 - [x] Signup 
 - [x] Get All Users 
+- [x] Add Post
+- [x] Get All Posts for a particular User
 
 ## All APIs
 
-- [ ] Add Post
 - [ ] View Post
 - [ ] Update Post
 - [ ] Delete Post
-- [ ] Get All Posts for a particular User
-
 
 
 ## APIs
