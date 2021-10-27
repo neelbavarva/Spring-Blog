@@ -31,6 +31,7 @@ export default function SignIn({sendDataToParent}) {
                     localStorage.setItem('SpringBlog_Token', value.token);
                     localStorage.setItem('SpringBlog_Username', username);
                     setLoginProcess("done")
+                    window.location.reload();
                 } else {
                     
                 }

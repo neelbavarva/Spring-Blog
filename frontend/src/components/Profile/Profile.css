@@ -1,0 +1,45 @@
+.profile_header_container {
+  display: flex;
+}
+
+.profile_header_left {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.profile_header_left > img {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid white;
+  border-radius: 100%;
+}
+
+.profile_header_left > h1 {
+  color: white;
+  margin-left: 0.75rem;
+  font-size: 20px;
+}
+
+.profile_header_right {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 2.75rem;
+}
+
+.profile_header_right > button {
+  width: 5rem;
+  height: 2rem;
+  border: none;
+  border-radius: 10rem;
+  cursor: pointer;
+  color: white;
+  font-family: "StdBold";
+  font-size: 12px;
+  background-color: var(--content-bg);
+  border: 1px solid var(--theme-bg-color);
+}

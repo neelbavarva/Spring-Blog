@@ -99,17 +99,17 @@ body.light-mode .video-bg:before {
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
+  /* width: 100%; */
   height: 100vh;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, #000 100%);
   backdrop-filter: saturate(3);
 }
 .app {
   background-color: var(--theme-bg-color);
-  max-width: 1250px;
   max-height: 860px;
   height: 90vh;
   display: flex;
+  flex: 1;
   flex-direction: column;
   overflow: hidden;
   width: 100%;
@@ -119,6 +119,19 @@ body.light-mode .video-bg:before {
   font-size: 15px;
   font-weight: 500;
 }
+
+@media screen and (min-width: 945px) {
+  .app {
+    width: 65vw;
+  }
+}
+
+@media screen and (max-width: 945px) {
+  .app {
+    width: 95vw;
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -235,13 +248,6 @@ body.light-mode .video-bg:before {
 .wide .header-profile {
   display: none;
 }
-.wide .search-bar {
-  max-width: 600px;
-  margin: auto;
-  transition: 0.4s;
-  box-shadow: 0 0 0 1px var(--border-color);
-  padding-left: 0;
-}
 .wide .menu-circle {
   margin-right: 0;
 }
@@ -353,8 +359,14 @@ body.light-mode .video-bg:before {
   height: 100%;
   overflow: auto;
   background-color: var(--theme-bg-color);
-  min-width: 40rem;
 }
+
+@media screen and (min-width: 750px) {
+  /* .content-wrapper {
+    min-width: 40rem;
+  } */
+}
+
 @media screen and (max-width: 510px) {
   .content-wrapper {
     padding: 20px;

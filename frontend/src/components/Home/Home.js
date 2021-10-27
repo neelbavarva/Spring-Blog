@@ -7,7 +7,7 @@ import SignUp from '../SignUp/SignUp';
 import Profile from '../Profile/Profile';
 import GradientBackground from '../../assets/images/gradient-background.png'
 import { AiFillHome, AiOutlineUser } from "react-icons/ai";
-import { RiLoginCircleFill, RiLoginBoxFill, RiAddCircleFill, RiReactjsLine, RiUserFill, RiGithubFill } from "react-icons/ri";
+import { RiLoginCircleFill, RiLoginBoxFill, RiAddCircleFill, RiReactjsLine, RiUserFill, RiGithubFill, RiLink } from "react-icons/ri";
 import { SiSpringboot } from "react-icons/si";
 
 
@@ -94,7 +94,7 @@ export default function Home() {
                         <div class="side-wrapper">
                         <div class="side-title">Categories</div>
                         <div class="side-menu">
-                            {token == null? 
+                            {token == null ? 
                                 <>
                                     <a onClick={() => setSignin("visible") & setPopup("visible")}>
                                         <RiLoginCircleFill />
@@ -136,19 +136,12 @@ export default function Home() {
                         <div class="side-wrapper">
                         <div class="side-title">Project Info</div>
                         <div class="side-menu">
-                            <a href="#">
+                            <a href="https://github.com/neelbavarva/Spring-Blog" target="_blank">
                                 <RiGithubFill />
                                 GitHub
                             </a>
-                            <a href="#">
-                                <svg viewBox="0 0 512 512" fill="currentColor">
-                                    <path
-                                    d="M196 151h-75v90h75c24.814 0 45-20.186 45-45s-20.186-45-45-45z"
-                                    />
-                                    <path
-                                    d="M467 0H45C20.186 0 0 20.186 0 45v422c0 24.814 20.186 45 45 45h422c24.814 0 45-20.186 45-45V45c0-24.814-20.186-45-45-45zM196 271h-75v105c0 8.291-6.709 15-15 15s-15-6.709-15-15V136c0-8.291 6.709-15 15-15h90c41.353 0 75 33.647 75 75s-33.647 75-75 75zm210-60c8.291 0 15 6.709 15 15s-6.709 15-15 15h-45v135c0 8.291-6.709 15-15 15s-15-6.709-15-15V241h-15c-8.291 0-15-6.709-15-15s6.709-15 15-15h15v-45c0-24.814 20.186-45 45-45h30c8.291 0 15 6.709 15 15s-6.709 15-15 15h-30c-8.276 0-15 6.724-15 15v45h45z"
-                                    />
-                                </svg>
+                            <a href="https://portfolio-neelbavarva.vercel.app/" target="_blank">
+                                <RiLink />
                                 Portfolio
                             </a>
                         </div>

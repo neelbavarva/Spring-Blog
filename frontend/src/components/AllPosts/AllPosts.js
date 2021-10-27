@@ -12,7 +12,7 @@ export default function AllPosts() {
     const fetchPosts = () => {
         fetch(`${SERVER.LINK}/api/post/view/all`)
         .then(res => res.json())
-        .then(value => setAllPosts(value))
+        .then(value => setAllPosts(value.reverse()))
     }
 
 

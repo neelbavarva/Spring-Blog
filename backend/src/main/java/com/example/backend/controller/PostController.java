@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.AddPostResponse;
 import com.example.backend.model.MyPost;
 import com.example.backend.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class PostController {
     private PostService postService;
 
     @PostMapping("/addPost")
-    public void addPost(@RequestBody MyPost myPost){
+    public AddPostResponse addPost(@RequestBody MyPost myPost){
 
         // Extract username from jwt
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -36,6 +37,8 @@ public class PostController {
 //        System.out.println(myNewPost);
 
         postService.addPost(myNewPost);
+
+        return new AddPostResponse(200, "Post added successfully");
 
     }
 
