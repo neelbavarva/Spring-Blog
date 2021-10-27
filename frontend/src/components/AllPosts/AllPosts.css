@@ -15,3 +15,53 @@
   padding-left: 0.25rem;
   font-size: 16px;
 }
+
+.profile_wrapper {
+  background: transparent;
+  text-align: center;
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 10px !important;
+  width: 100%;
+  padding-top: 5px;
+}
+.profile_wrapper_scrolls {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 12.5rem;
+  white-space: nowrap;
+  display: flex;
+  margin-left: -1.5rem;
+}
+
+.user_display_card {
+  background-color: var(--overlay-bg);
+  padding: 0.65rem;
+  margin-left: 1rem;
+  border-radius: 1rem;
+  width: 7.5rem;
+  height: 9.75rem;
+  margin-top: 0.5rem;
+  border: 1px solid var(--border-color);
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.user_display_card:hover {
+  width: 8rem;
+  height: 10rem;
+  transition: 0.25s;
+}
+
+.user_display_card > img {
+  width: 4rem;
+  height: 4rem;
+  margin-top: 1rem;
+  border-radius: 100rem;
+  border: 3px solid var(--scrollbar-bg);
+}
+
+.user_display_card > h1 {
+  font-size: 18px;
+  padding-bottom: 2rem;
+}

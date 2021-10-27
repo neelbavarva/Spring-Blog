@@ -6,9 +6,11 @@ import com.example.backend.repository.PostRepository;
 import com.example.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -41,5 +43,23 @@ public class PostService {
 
         return userPosts;
 
+    }
+
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
+    }
+
+    public MyPost updatePost(Long id, MyPost myPost) {
+        MyPost postDB = postRepository.findById(id).get();
+
+        if(Objects.nonNull(myPost.getTitle()) && !"".equals(myPost.getTitle())){
+            postDB.setTitle(myPost.getTitle());
+        }
+
+        if(Objects.nonNull(myPost.getContent()) && !"".equals((myPost.getContent()))){
+            postDB.setContent(myPost.getContent());
+        }
+
+        return postRepository.save(postDB);
     }
 }

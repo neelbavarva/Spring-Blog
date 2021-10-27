@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.AddPostResponse;
+import com.example.backend.dto.DeletePostResponse;
 import com.example.backend.model.MyPost;
 import com.example.backend.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,15 @@ public class PostController {
         return postService.viewUserPost(username);
     }
 
+    @PutMapping("/update/{id}")
+    public MyPost updatePost(@PathVariable("id") Long id, @RequestBody MyPost myPost){
+        return postService.updatePost(id,myPost);
+    }
 
+    @DeleteMapping("/delete/{id}")
+    public DeletePostResponse deltePost(@PathVariable("id") Long id){
+        postService.deletePost(id);
+        return new DeletePostResponse(200, "Post deleted successfully");
+    }
 
 }

@@ -15,9 +15,18 @@ export default function AllPosts() {
         .then(value => setAllPosts(value.reverse()))
     }
 
+    const [allUsers, setAllUsers] = useState(null);
+
+    const fetchUsers = () => {
+        fetch(`${SERVER.LINK}/api/user/getAll`)
+        .then(res => res.json())
+        .then(value => setAllUsers(value))
+    }
+
 
     useEffect(()=>{
         fetchPosts()
+        fetchUsers()
     },[])
 
     return (
@@ -27,31 +36,24 @@ export default function AllPosts() {
                 </div>
 
                 <div class="content-wrapper">
-                    <div class="content-wrapper-header">
-                        <div class="content-wrapper-context">
-                            <h3 class="img-content">
-                                <img
-                                    class="header_image"
-                                    src="https://cdn3d.iconscout.com/3d/premium/thumb/code-4059153-3364039@0.png"
-                                />
-                                Blog App
-                            </h3>
-                            <div class="content-text">
-                                This Blog App project is made using React.js for Frontend and
-                                Spring Boot for Backend.
-                            </div>
-                            <a href="https://github.com/neelbavarva/Spring-Blog" target="_blank"><button class="content-button">View Repository</button></a>
+                    {/* <div class="content-section-title">New Users</div>
+                    <div class="profile_wrapper">
+                        {allUsers == null ? 
+                        <h1>Loading...</h1> : 
+                        <div class="profile_wrapper_scrolls">
+                            {allUsers.map(item => {
+                                return(
+                                    <div className="user_display_card">
+                                        <img src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
+                                        <h1>{item}</h1>
+                                    </div>
+                                )
+                            })}
                         </div>
-                        <img
-                            class="content-wrapper-img"
-                            src="https://assets.codepen.io/3364143/glass.png"
-                            alt=""
-                        />
-                    </div>
-
-                        
+                        }
+                    </div> */}
                     <div class="content-section">
-                        <div class="content-section-title">All Posts</div>
+                        <div class="content-section-title all_post_title">All Posts</div>
                             <div class="apps-card">
 
                                 {allPosts == null ? <h1>Loading...</h1> : (

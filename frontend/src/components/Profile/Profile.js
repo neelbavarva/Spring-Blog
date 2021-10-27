@@ -18,6 +18,20 @@ export default function Profile() {
         .then(value => setAllPosts(value.reverse()))
     }
 
+    const fetchDeletePost = (id) => {
+        fetch(`${SERVER.LINK}/api/post/delete/${id}`,{
+            method:'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(res => res.json())
+        .then(value => {
+            console.log(value)
+            window.location.reload()
+        })
+    }
+
     const fetchLogout = () => {
         localStorage.removeItem('SpringBlog_Token')
         localStorage.removeItem('SpringBlog_Username')
@@ -65,6 +79,7 @@ export default function Profile() {
                                                 {item.content}
                                             </div>
                                             <div class="app-card-buttons">
+                                                <button class="content-button status-button status-red" onClick={() => fetchDeletePost(item.id)}>Delete</button>
                                                 <button class="content-button status-button" onClick={() => setPopup("visible")}>Edit</button>
                                             </div>
                                         </div>

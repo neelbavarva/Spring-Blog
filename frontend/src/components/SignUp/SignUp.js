@@ -10,42 +10,49 @@ export default function SignUp({sendDataToParent}) {
 
     const [registerProcess, setRegisterProcess] = useState("null");
 
-    const [allUsers, setAllUsers] = useState([]);
+    const [allUsers, setAllUsers] = useState(null);
+
+    const [userExist, setUserExist] = useState(false);
 
     const fetchUsers = () => {
         fetch(`${SERVER.LINK}/api/user/getAll`)
         .then(res => res.json())
         .then(value => setAllUsers(value))
-        console.log(allUsers)
     }
 
 
-    function fetchSignUp(){
+    async function fetchSignUp(){
 
         setRegisterProcess("loading")
 
-        if(username!=null && email!=null && password!=null){
-            fetch(`${SERVER.LINK}/api/auth/signup`,{
-                method:'POST',
-                body: JSON.stringify({
-                    username: username,
-                    email: email,
-                    password: password
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(res => res.json())
-            .then(value => {
-                if(value.status == 200){
-                    setRegisterProcess("done")
-                } else {
-                    setRegisterProcess("error")
-                }
-            })
+        if(allUsers.includes(username)){
+            console.log("Username already exists")
+            setRegisterProcess("username_exist")
         } else {
-            console.log(username);
+            if(username!=null && email!=null && password!=null){
+                fetch(`${SERVER.LINK}/api/auth/signup`,{
+                    method:'POST',
+                    body: JSON.stringify({
+                        username: username,
+                        email: email,
+                        password: password
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(res => res.json())
+                .then(value => {
+                    console.log(value)
+                    if(value.status == 200){
+                        setRegisterProcess("done")
+                    } else {
+                        setRegisterProcess("error")
+                    }
+                })
+            } else {
+                console.log(username);
+            }
         }
         
     }
@@ -80,13 +87,33 @@ export default function SignUp({sendDataToParent}) {
                         <input className="add_post_input" onChange={e => setPassword(e.target.value)} placeholder="Password" />
                     </div>
                     <div class="content-button-wrapper">
-                        {registerProcess == "done" ? 
+                        {registerProcess == "username_exist" ? 
+                            <button class="content-button status-button status-red">
+                                Username already exist
+                            </button> : null}
+                        {allUsers == null ? 
                             <button class="content-button status-button">
-                                Successfully Registered 
-                            </button> : 
-                            <button class="content-button status-button" onClick={() => fetchSignUp()}>
-                                {registerProcess == "null" ? <>SignUp</> : <>•••</>}
+                                •••
                             </button>
+                        :  <>
+                            {registerProcess == "done" ? 
+                                <button class="content-button status-button">
+                                    Successfully Registered 
+                                </button> : 
+                                
+                                <>
+                                    {registerProcess == "null" || registerProcess == "username_exist" ? 
+                                        <button class="content-button status-button" onClick={() => fetchSignUp()}>
+                                            SignUp
+                                        </button> :
+                                        <button class="content-button status-button">
+                                            •••
+                                        </button>
+                                    }
+                                </>
+                                
+                            }
+                            </>
                         }
                     </div>
                 </div>
