@@ -6,8 +6,10 @@
 
 - [x] Login
 - [x] Signup 
-- [x] Get All Users 
 - [x] Add Post
+- [x] Get All Posts
+- [x] Get All Usernames
+- [x] Get Username from jwtToken
 - [x] Get All Posts for a particular User
 
 ## All APIs
