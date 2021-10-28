@@ -43,3 +43,18 @@
   background-color: var(--content-bg);
   border: 1px solid var(--theme-bg-color);
 }
+
+.edit_card {
+  margin-left: 0rem;
+  width: 18rem;
+}
+
+@media screen and (max-width: 560px) {
+  .edit_card {
+    width: 100%;
+  }
+
+  .edit_input {
+    width: 100%;
+  }
+}

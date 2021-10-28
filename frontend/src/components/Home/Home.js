@@ -5,10 +5,12 @@ import AddPost from '../AddPost/AddPost';
 import SignIn from '../SignIn/SignIn';
 import SignUp from '../SignUp/SignUp';
 import Profile from '../Profile/Profile';
+import AllUsers from '../AllUsers/AllUsers';
 import GradientBackground from '../../assets/images/gradient-background.png'
 import { AiFillHome, AiOutlineUser } from "react-icons/ai";
-import { RiLoginCircleFill, RiLoginBoxFill, RiAddCircleFill, RiReactjsLine, RiUserFill, RiGithubFill, RiLink } from "react-icons/ri";
+import { RiLoginCircleFill, RiLoginBoxFill, RiAddCircleFill, RiReactjsLine, RiUserFill, RiGithubFill, RiLink, RiUserSearchFill } from "react-icons/ri";
 import { SiSpringboot } from "react-icons/si";
+import UserDetail from '../UserDetail/UserDetail';
 
 
 export default function Home() {
@@ -24,6 +26,8 @@ export default function Home() {
 
     const [token, setToken] = useState(null);
 
+    const [userDetail, setUserDetail] = useState(null);
+
     const adPostData = (isVisible) => {
         setAddPost(isVisible);
         setPopup(isVisible);
@@ -38,6 +42,13 @@ export default function Home() {
         setSignup(isVisible);
         setPopup(isVisible);
     };
+
+    const userPage = (userDetail) => {
+        setViewMode(userDetail.viewMode);
+        setUserDetail(userDetail.username)
+    };
+
+    
 
     useEffect(()=>{
         setToken(localStorage.getItem('SpringBlog_Token'))
@@ -67,12 +78,19 @@ export default function Home() {
                                         <button class={`dropdown ${dropdown}`} onClick={() => dropdown == null ? setDropdown("is-active") : setDropdown(null)}>
                                             <ul>
                                                 <li onClick={() => setViewMode("AllPosts")}><a>All Posts</a></li>
-                                                <li onClick={() => setViewMode("Profile")}><a>Profile</a></li>
-                                                <li onClick={() => setSignin("visible") & setPopup("visible")}><a>SignIn</a></li>
-                                                <li onClick={() => setSignup("visible") & setPopup("visible")}><a>SignUp</a></li>
-                                                <li onClick={() => setAddPost("visible") & setPopup("visible")}><a>Add Post</a></li>
-                                                <li><a href="#">GitHub</a></li>
-                                                <li><a href="#">Portfolio</a></li>
+                                                <li onClick={() => setViewMode("AllUsers")}><a>All Users</a></li>
+                                                {token == null ? 
+                                                    <>
+                                                        <li onClick={() => setSignin("visible") & setPopup("visible")}><a>SignIn</a></li>
+                                                        <li onClick={() => setSignup("visible") & setPopup("visible")}><a>SignUp</a></li>
+                                                    </> :
+                                                    <>  
+                                                        <li onClick={() => setViewMode("Profile")}><a>Profile</a></li>
+                                                        <li onClick={() => setAddPost("visible") & setPopup("visible")}><a>Add Post</a></li>
+                                                    </>
+                                                }
+                                                <li><a href="https://github.com/neelbavarva/Spring-Blog" target="_blank">GitHub</a></li>
+                                                <li><a href="https://portfolio-neelbavarva.vercel.app/" target="_blank">Portfolio</a></li>
                                             </ul>
                                         </button>
                                     </div>
@@ -88,6 +106,10 @@ export default function Home() {
                             <a onClick={() => setViewMode("AllPosts")}>
                                 <AiFillHome />
                                 All Posts
+                            </a>
+                            <a onClick={() => setViewMode("AllUsers")}>
+                                <RiUserSearchFill />
+                                All Users
                             </a>
                         </div>
                         </div>
@@ -123,11 +145,11 @@ export default function Home() {
                         <div class="side-wrapper">
                         <div class="side-title">Made With</div>
                         <div class="side-menu">
-                            <a href="#">
+                            <a>
                                 <RiReactjsLine />
                                 React.js
                             </a>
-                            <a href="#">
+                            <a>
                                 <SiSpringboot />
                                 Spring Boot
                             </a>
@@ -150,6 +172,8 @@ export default function Home() {
 
                     {viewMode == "AllPosts" && <AllPosts />}
                     {viewMode == "Profile" && <Profile />}
+                    {viewMode == "AllUsers" && <AllUsers sendDataToParent={userPage} />}
+                    {viewMode == "UserDetail" && <UserDetail userDetail={userDetail} />}
 
                 </div>
             </div>

@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import './AllPosts.css';
+import './AllUsers.css';
+import { IoIosArrowDroprightCircle } from "react-icons/io";
 import * as SERVER from '../../ServerURL';
+import UserDetail from '../UserDetail/UserDetail';
 import Loading from '../Loading/Loading';
 
-export default function AllPosts() {
+export default function AllUsers({sendDataToParent}) {
 
     const [popup, setPopup] = useState(null);
     const [dropdown, setDropdown] = useState(null);
@@ -37,59 +39,31 @@ export default function AllPosts() {
                 </div>
 
                 <div class="content-wrapper">
-                    {/* <div class="content-section-title">New Users</div>
-                    <div class="profile_wrapper">
-                        {allUsers == null ? 
-                        <h1>Loading...</h1> : 
-                        <div class="profile_wrapper_scrolls">
-                            {allUsers.map(item => {
-                                return(
-                                    <div className="user_display_card">
-                                        <img src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                        <h1>{item}</h1>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                        }
-                    </div> */}
-
-                    {/* <div class="container">
-                        <div class="row">
-                            {allUsers == null ? 
-                                <h1>Loading...</h1> : 
-                                allUsers.map(item => {
-                                    return(
-                                        <div class="card">
-                                            <img src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
-                                            <h1>{item}</h1>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    </div> */}
 
                     <div class="content-section">
                         <div class="content-section-title all_post_title">All Posts</div>
-                            <div class="apps-card">
+                            <div class="apps-card users_card">
 
-                                {allPosts == null ? <Loading /> : (
+                                {allUsers == null ? <Loading /> : (
                                     <div class="apps-card">
-                                        {allPosts.map(item =>{
+                                        {allUsers.map(item =>{
                                             return(
-                                                <div class="app-card">
+                                                <div onClick={() => sendDataToParent({
+                                                    "viewMode" : "UserDetail",
+                                                    "username" : item
+                                                })} class="app-card user_card">
                                                     <span>
                                                         <img class="profile-img card_icon post_item_title" src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg" />
                                                         
                                                         <div className="post_item_title">
-                                                            {item.title}
+                                                            {item}
                                                         </div>
 
                                                     </span>
                                                     <div class="app-card__subtext allpost_text">
-                                                        <div className="post_item_content">
-                                                            {item.content}
+                                                        <div className="post_item_content user_link">
+                                                            <span>View Profile</span>
+                                                            <IoIosArrowDroprightCircle />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -101,6 +75,8 @@ export default function AllPosts() {
                             </div>
                         </div>
                     </div>
+
+                    
             </div>
     );
 }
