@@ -6,7 +6,8 @@ import SignIn from '../SignIn/SignIn';
 import SignUp from '../SignUp/SignUp';
 import Profile from '../Profile/Profile';
 import AllUsers from '../AllUsers/AllUsers';
-import GradientBackground from '../../assets/images/gradient-background.png'
+import GradientDark from '../../assets/images/gradient_dark.png'
+import GradientLight from '../../assets/images/gradient_light.jpg'
 import { AiFillHome, AiOutlineUser } from "react-icons/ai";
 import { RiLoginCircleFill, RiLoginBoxFill, RiAddCircleFill, RiReactjsLine, RiUserFill, RiGithubFill, RiLink, RiUserSearchFill } from "react-icons/ri";
 import { SiSpringboot } from "react-icons/si";
@@ -21,6 +22,7 @@ export default function Home() {
     const [signin, setSignin] = useState(null);
     const [signup, setSignup] = useState(null);
     const [dropdown, setDropdown] = useState(null);
+    const [background, setBackground] = useState(GradientLight);
 
     const [popup, setPopup] = useState(null);
 
@@ -57,7 +59,7 @@ export default function Home() {
     return (
         <div>
             <div class="video-bg">
-                <img src="https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/02/Usign-Gradients-Featured-Image.jpg" />
+                <img src={background} />
             </div>
 
             {signin == null ? null : <SignIn sendDataToParent={signinData} />}
@@ -68,6 +70,7 @@ export default function Home() {
                 <div class="header">
                     <div class="menu-circle"></div>
                         <div class="header-profile">
+                            <button onClick={() => background == GradientLight ? setBackground(GradientDark) : setBackground(GradientLight)} className="theme_button">Change Theme</button>
                             <img
                                 class="profile-img header-profile-img"
                                 src="https://unblast.com/wp-content/uploads/2018/12/Colorful-Sci-Fi-Textures-2.jpg"
