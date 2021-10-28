@@ -80,6 +80,7 @@ export default function Home() {
                                     <div class="app-cad-buttons">
                                         <button class={`dropdown ${dropdown}`} onClick={() => dropdown == null ? setDropdown("is-active") : setDropdown(null)}>
                                             <ul>
+                                                <li onClick={() => background == GradientLight ? setBackground(GradientDark) : setBackground(GradientLight)}><a>Change Theme</a></li>
                                                 <li onClick={() => setViewMode("AllPosts")}><a>All Posts</a></li>
                                                 <li onClick={() => setViewMode("AllUsers")}><a>All Users</a></li>
                                                 {token == null ? 
