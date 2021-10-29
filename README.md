@@ -1,26 +1,36 @@
 # Spring-Blog
 
+## Frontend Preview
+
+<img src="https://github.com/neelbavarva/Spring-Blog/blob/main/Images/frontend-image.png" />
+
+## Backend
+
 *For Developmental Tracking* 
-
-## Completed APIs
-
-- [x] Login
-- [x] Signup 
-- [x] Add Post
-- [x] Get All Posts
-- [x] Get All Usernames
-- [x] Get Username from jwtToken
-- [x] Get All Posts for a particular User
-
-## All APIs
-
-- [ ] View Post
-- [ ] Update Post
-- [ ] Delete Post
-
 
 ## APIs
 
-- Login (/api/auth/login)
-- Signup (/api/auth/signup)
-- Get All Users (/api/user/getAll)
+#### Auth APIs
+
+- [x] Login ( /api/auth/login )
+- [x] Signup ( /api/auth/signup )
+
+#### User APIs
+
+- [x] Get All Users ( /api/user/getAll )
+- [x] Extract Username from jwtToken ( /api/user/getUser )
+
+#### Post APIs
+
+- [x] Add Post ( /api/post/addPost )
+- [x] Get All Posts ( /api/post/view/all )
+- [x] Get All Posts of a User ( /api/post/view/user/{username} )
+- [x] Update Post ( /api/post/update/{id} )
+- [x] Delete Post ( /api/post/delete/{id} )
+
+### How to Run this application
+
+1 Should already have installed mysql and mysqlworkbench <br/>
+2 Create 'springblog' schema in your local instance through mysqlworkbench <br/>
+3 Run both the application ( Frontend serving on localhost:3000 and Backend serving on localhost:5000 )
+
