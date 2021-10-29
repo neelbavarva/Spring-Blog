@@ -34,3 +34,14 @@
 2 Create 'springblog' schema in your local instance through mysqlworkbench <br/>
 3 Run both the application ( Frontend serving on localhost:3000 and Backend serving on localhost:5000 )
 
+For running frontend
+```
+npm start
+```
+
+For running backend ( or just use IntelliJ to run directly )
+
+```
+mvn spring-boot:run
+```
+
